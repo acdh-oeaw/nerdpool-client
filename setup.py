@@ -12,6 +12,6 @@ setuptools.setup(
     packages=['nerdpool_client'],
     zip_safe=False,
     install_requires=[
-          'requests',
-      ],
+        'requests',
+    ],
 )

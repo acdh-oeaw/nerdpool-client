@@ -26,3 +26,44 @@ class NerdPoolClient():
 
     def list_data_set_titles(self):
         return [x['title'] for x in self.fetch_data_sets()]
+    
+    def yield_samples(self, dataset_title=False, limit=False, **kwargs):
+        """ iterator to yield all ner-samples
+        :param dataset_title: Title of a specific dataset
+        :type dataset_title: str
+        :param limit: Bool to flag if only a short sample\
+        of samples should be fetched, defaults to `False`
+        :type limit: bool
+        :return: An iterator yielding abbreviations
+        :rtype: iterator
+        """
+        params = []
+        print(kwargs)
+        next = True
+        if dataset_title:
+            params.append(('ner_source__title', dataset_title))
+        if kwargs:
+            for key, value in kwargs.items():
+                params.append((key, value))
+        
+        url = self.sample_ep
+        counter = 0
+        if limit:
+            max_samples = 5
+        while next:
+            response = requests.get(url, params=params)
+            print(response.url)
+            result = response.json()
+            if result.get('next', False):
+                url = result.get('next')
+            else:
+                next = False
+            results = result.get('results')
+            for x in results:
+                counter += 1
+                if limit:
+                    if counter <= max_samples:
+                        next = False
+                        yield(x)
+                else:
+                    yield(x)
