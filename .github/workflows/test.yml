@@ -23,5 +23,9 @@ jobs:
         pip install tox tox-gh-actions
     - name: Test with tox
       run: tox
+    - name: directory listing
+      run: ls
     - name: Upload Coverage to Codecov
       uses: codecov/codecov-action@v1
+      with:
+        files: ./coverage.xml
