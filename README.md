@@ -1,3 +1,5 @@
+[![Run Tests](https://github.com/acdh-oeaw/nerdpool-client/actions/workflows/test.yml/badge.svg)](https://github.com/acdh-oeaw/nerdpool-client/actions/workflows/test.yml)
+
 # nerdpool-client
 
 ## install
