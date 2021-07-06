@@ -23,10 +23,3 @@ jobs:
         pip install tox tox-gh-actions
     - name: Test with tox
       run: tox
-    - name: Upload coverage.xml
-      if: ${{ matrix.python-version == '3.9' }}
-      uses: actions/upload-artifact@v2
-      with:
-        name: tox-gh-actions-coverage
-        path: coverage.xml
-        if-no-files-found: error
