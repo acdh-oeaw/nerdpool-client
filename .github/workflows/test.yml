@@ -23,7 +23,7 @@ jobs:
         pip install tox tox-gh-actions
     - name: Test with tox
       run: tox
-      name: Upload coverage.xml
+    - name: Upload coverage.xml
         if: ${{ matrix.platform == 'ubuntu-latest' && matrix.python-version == '3.9' }}
         uses: actions/upload-artifact@v2
         with:
