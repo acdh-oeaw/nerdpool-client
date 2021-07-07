@@ -3,3 +3,4 @@ source=
     ./nerdpool_client
 omit=
     ./env/*
+    ./nerdpool_client/test/*
