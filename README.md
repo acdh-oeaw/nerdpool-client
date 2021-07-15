@@ -2,6 +2,8 @@
 
 # nerdpool-client
 
+A Python client for downloading data from https://nerdpool-api.acdh-dev.oeaw.ac.at
+
 ## install
 
 `pip install nerdpool_client`
