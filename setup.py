@@ -7,7 +7,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setuptools.setup(
     name="nerdpool-client",
-    version="0.0.1",
+    version="1.0.0",
     author="Peter Andorfer",
     long_description=long_description,
     long_description_content_type='text/markdown',
