@@ -1,6 +1,4 @@
-[![Run Tests](https://github.com/acdh-oeaw/nerdpool-client/actions/workflows/test.yml/badge.svg)](https://github.com/acdh-oeaw/nerdpool-client/actions/workflows/test.yml)
-
-[![codecov](https://codecov.io/gh/acdh-oeaw/nerdpool-client/branch/master/graph/badge.svg?token=LXKIMGDXXF)](https://codecov.io/gh/acdh-oeaw/nerdpool-client)
+[![Run Tests](https://github.com/acdh-oeaw/nerdpool-client/actions/workflows/test.yml/badge.svg)](https://github.com/acdh-oeaw/nerdpool-client/actions/workflows/test.yml) [![codecov](https://codecov.io/gh/acdh-oeaw/nerdpool-client/branch/master/graph/badge.svg?token=LXKIMGDXXF)](https://codecov.io/gh/acdh-oeaw/nerdpool-client)
 
 # nerdpool-client
 
@@ -22,3 +20,16 @@ print(client.data_sets)
 # ['RTA', 'RITA', 'MRP', 'Chronik Aldersbach', 'DIPKO']
 ```
 
+### download samples as .jsonl file
+
+* go to [nerdpool-api](https://nerdpool-api.acdh-dev.oeaw.ac.at/) and create/filter you'r prefered data sample; e.g. all samples from MRP: 
+
+```python
+
+from nerdpool_client import NerdPoolClient
+
+url = "https://nerdpool-api.acdh-dev.oeaw.ac.at/api/ner-sample/?format=json&ner_ent_type__contains=&ner_source__title=MRP"
+client = NerdPoolClient()
+client.dump_to_jsonl(url)
+# 'out.jsonl'
+```
