@@ -127,4 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# custom rules
 Untitled.ipynb
+train.jsonl
+eval.jsonl
+out*

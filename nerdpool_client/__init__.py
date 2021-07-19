@@ -104,3 +104,37 @@ class NerdPoolClient():
                 out_file.write(json.dumps(item, ensure_ascii=False))
                 out_file.write("\n")
         return file_name
+
+    def dump_to_train_eval(self, url, file_name_prefix="", limit=False, split=5):
+
+        """
+        dumps the data from the given URL to a train and eval
+
+        :param url: The url of the data to fetch
+        :type dataset_title: str
+        :param limit: Bool to flag if only a short sample\
+        of samples should be fetched, defaults to `False`
+        :type limit: bool
+        :param file_name_prefix: some prefix -> f"{file_name_prefix}__train|eval.jsonl"
+        :type file_name_prefix: string
+        :param split: each n sample should be written into eval.jsonl
+        :type split: int
+
+        :return: File names of train and eval.jsonl
+        :rtype: list
+        """
+        counter = 1
+        with open(f"{file_name_prefix}train.jsonl", "w") as train_file:
+            with open(f"{file_name_prefix}eval.jsonl", "w") as eval_file:
+                for x in self.yield_samples(url, limit=limit):
+                    print(counter)
+                    item = self.sample_to_json(x)
+                    if counter != split:
+                        train_file.write(json.dumps(item, ensure_ascii=False))
+                        train_file.write("\n")
+                        counter += 1
+                    else:
+                        eval_file.write(json.dumps(item, ensure_ascii=False))
+                        eval_file.write("\n")
+                        counter = 1
+        return [f"{file_name_prefix}__train.jsonl", f"{file_name_prefix}__eval.jsonl", "w"]
