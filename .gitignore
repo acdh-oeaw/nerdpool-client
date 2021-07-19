@@ -130,6 +130,6 @@ dmypy.json
 
 # custom rules
 Untitled.ipynb
-train.jsonl
-eval.jsonl
+*train.jsonl
+*eval.jsonl
 out*
