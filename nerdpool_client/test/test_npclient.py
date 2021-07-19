@@ -54,3 +54,17 @@ class TestNerdPoolClient(TestCase):
             sample = json.loads(f.readline())
             self.assertTrue('text' in sample.keys())
         os.remove(JSONL_DUMP)
+
+    def test_train_eval_dump(self):
+        try:
+            os.remove('train.jsonl')
+            os.remove('eval.jsonl')
+        except FileNotFoundError:
+            pass
+        dump = client.dump_to_train_eval(ENDPOINT, limit=True, split=3)
+        self.assertEqual(len(dump), 2)
+        with open(dump[1]) as f:
+            line_count = sum(1 for _ in f)
+        self.assertEqual(line_count, 1)
+        for x in dump:
+            os.remove(x)

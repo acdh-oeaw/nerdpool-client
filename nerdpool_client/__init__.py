@@ -127,7 +127,6 @@ class NerdPoolClient():
         with open(f"{file_name_prefix}train.jsonl", "w") as train_file:
             with open(f"{file_name_prefix}eval.jsonl", "w") as eval_file:
                 for x in self.yield_samples(url, limit=limit):
-                    print(counter)
                     item = self.sample_to_json(x)
                     if counter != split:
                         train_file.write(json.dumps(item, ensure_ascii=False))
@@ -137,4 +136,4 @@ class NerdPoolClient():
                         eval_file.write(json.dumps(item, ensure_ascii=False))
                         eval_file.write("\n")
                         counter = 1
-        return [f"{file_name_prefix}__train.jsonl", f"{file_name_prefix}__eval.jsonl", "w"]
+        return [f"{file_name_prefix}train.jsonl", f"{file_name_prefix}eval.jsonl"]
